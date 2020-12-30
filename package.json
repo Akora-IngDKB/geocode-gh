@@ -1,10 +1,11 @@
 {
   "name": "geocode-gh",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "An api for geocoding in Ghana using the GhanaPostGPS.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
