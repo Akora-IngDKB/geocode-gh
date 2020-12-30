@@ -62,7 +62,7 @@ exports.scrape = async function (address, options) {
 
     } catch (e) {
         await browser.close();
-        // return [e]; //development
+        console.log(e);
 
         // return an error
         return {
