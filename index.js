@@ -1,4 +1,4 @@
-const scrapper = require('./scrapper');
+const scrapper = require('./api/scrapper');
 const express = require('express');
 
 const port = process.env.PORT || 3000
