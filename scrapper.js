@@ -43,16 +43,16 @@ exports.scrape = async function (address, options) {
         const district = await page.$eval('.address-list > li.row:nth-child(4) > .col > .text-warning', el => el.innerText);
         const areaCode = await page.$eval('.address-list > li.row:nth-child(5) > .col > .text-warning', el => el.innerText);
         const postCode = await page.$eval('.address-list > li.row:nth-child(6) > .col > .text-warning', el => el.innerText);
-        const lngLat = await page.$eval('.address-list > li.row:nth-child(7) > .col > .text-warning', el => el.innerText);
+        const latLng = await page.$eval('.address-list > li.row:nth-child(7) > .col > .text-warning', el => el.innerText);
 
         const data = {
-            'DigitalAddress': address,
+            'digitalAddress': address,
             "streetName": streetName,
             "region": region,
             "district": district,
             "postCode": postCode,
-            "areaCode": areaCode,
-            "lngLat": lngLat
+            "area": areaCode,
+            "latLng": latLng
         };
 
         await browser.close();
@@ -63,15 +63,10 @@ exports.scrape = async function (address, options) {
         await browser.close();
         // return [e]; //development
 
-        // production
+        // return an error
         return {
-            'DigitalAddress': address,
-            "streetName": null,
-            "region": null,
-            "district": null,
-            "postCode": 'N/A',
-            "areaCode": "N/A",
-            "lngLat": 'N/A'
+            'success': false,
+            'message': 'Something went wrong. Try again later'
         };
     }
 }
