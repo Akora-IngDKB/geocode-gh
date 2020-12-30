@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const util = require('./util');
 
 exports.scrape = async function (address, options) {
 
@@ -52,7 +53,7 @@ exports.scrape = async function (address, options) {
             "district": district,
             "postCode": postCode,
             "area": areaCode,
-            "latLng": latLng
+            "latLng": util.parseLatLng(latLng)
         };
 
         await browser.close();
