@@ -10,7 +10,7 @@ exports.parseLatLng = (latLng) => {
     }
 
     return {
-        'lat': splitted[0].trim(),
-        'lng': splitted[1].trim(),
+        'lat': parseFloat(splitted[0].trim()),
+        'lng': parseFloat(splitted[1].trim()),
     }
 }
