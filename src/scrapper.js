@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const util = require('./util');
 
-exports.scrape = async function (address, options) {
+exports.scrape = async (address, options) => {
 
     const browser = await puppeteer.launch({
         headless: true,
@@ -14,8 +14,8 @@ exports.scrape = async function (address, options) {
     const page = await browser.newPage();
 
     try {
-        await page.evaluateOnNewDocument(function () {
-            navigator.geolocation.getCurrentPosition = function (cb) {
+        await page.evaluateOnNewDocument(() => {
+            navigator.geolocation.getCurrentPosition = (cb) => {
                 setTimeout(() => {
                     cb({
                         'coords': {

@@ -17,8 +17,7 @@ app.get('/api', (req, res) => {
             }
         );
     } else {
-
-        scrapper.scrape(address, { timeout: 10000 }).then(function (data) {
+        scrapper.scrape(address, { timeout: 10000 }).then((data) => {
             res.json(data);
         });
     }
