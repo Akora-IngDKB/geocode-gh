@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const util = require('./util');
 
-exports.scrape = async (address, options) => {
+exports.scrape = async (address, options, callback) => {
 
     const browser = await puppeteer.launch({
         headless: true,
@@ -11,6 +11,7 @@ exports.scrape = async (address, options) => {
             '--disable-setuid-sandbox'
         ]
     });
+
     const page = await browser.newPage();
 
     try {
@@ -65,16 +66,19 @@ exports.scrape = async (address, options) => {
 
         await browser.close();
 
-        return data;
+        // return data;
+        callback(undefined, data);
 
     } catch (e) {
         await browser.close();
         console.log(e);
 
-        // return an error
-        return {
-            'success': false,
-            'message': 'Something went wrong. Try again later'
-        };
+        // Return an error
+        callback(
+            {
+                'success': false,
+                'message': 'Something went wrong. Try again later'
+            }, undefined
+        );
     }
 }

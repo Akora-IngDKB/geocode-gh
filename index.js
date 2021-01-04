@@ -8,8 +8,6 @@ app.get('/api', (req, res) => {
     const address = req.query.address;
 
     if (!address) {
-        console.log('no address provided');
-
         res.status(400).json(
             {
                 'success': false,
@@ -17,7 +15,11 @@ app.get('/api', (req, res) => {
             }
         );
     } else {
-        scrapper.scrape(address, { timeout: 10000 }).then((data) => {
+        scrapper.scrape(address, { timeout: 30000 }, (err, data) => {
+            if (err) {
+                return res.status(400).json(err);
+            }
+
             res.json(data);
         });
     }
