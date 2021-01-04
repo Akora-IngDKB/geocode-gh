@@ -7,9 +7,22 @@ const app = express();
 app.get('/api', (req, res) => {
     const address = req.query.address;
 
-    scrapper.scrape(address, { timeout: 10000 }).then(function (data) {
-        res.json(data);
-    })
+    if (!address) {
+        console.log('no address provided');
+
+        res.status(400).json(
+            {
+                'success': false,
+                'message': 'No address provided'
+            }
+        );
+    } else {
+
+        scrapper.scrape(address, { timeout: 10000 }).then(function (data) {
+            res.json(data);
+        });
+    }
+
 });
 
 app.get('*', (_, res) => {
